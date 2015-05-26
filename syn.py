@@ -18,9 +18,10 @@ for x in range(0,50):
         sip = ".".join([str(first),str(randrange(1,256)),
         str(randrange(1,256)),str(randrange(1,256))])
 
+	print sip ," > ", sys.argv[1], ":" ,sys.argv[2]
         p=IP(dst=sys.argv[1],src=sip)/TCP(dport=int(sys.argv[2]),sport=RandShort(),flags="S")
 
-	send(p)
+	send(p, verbose=0)
 
         #print summarys
         #ans.summary()
