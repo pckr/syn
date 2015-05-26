@@ -7,9 +7,7 @@ import ipaddr
 
 not_valid = [10,127,169,172,192]
 
-
-
-for x in range(0,10):
+for x in range(0,50):
 
         #generate random numbers between 1 and 256, but not RFC1918
         first = randrange(1,256)
@@ -20,16 +18,9 @@ for x in range(0,10):
         sip = ".".join([str(first),str(randrange(1,256)),
         str(randrange(1,256)),str(randrange(1,256))])
 
-        print "Source IP:",sip
-        print "Destination IP:",sys.argv[1]
-        print "Destination Port:",int(sys.argv[2])
-        count = randrange(1,1000)
-        print "Number of packets:",count
-
         p=IP(dst=sys.argv[1],src=sip)/TCP(dport=int(sys.argv[2]),sport=RandShort(),flags="S")
 
-        #send/receive listener for p
-        ans,unans=srloop(p,inter=0.01,count=count)
+	send(p)
 
         #print summarys
         #ans.summary()
